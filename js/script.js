@@ -5,6 +5,14 @@ window.onload = (e) => {
     const otherRole = document.getElementById('other-job-role');
     otherRole.style.display = 'none';
 
+    const shirtColors = document.getElementById('shirt-colors');
+    const colorOptions = shirtColors.getElementsByTagName('option');
+    for(let i = 0; i < colorOptions.length; i++) {
+        // console.log(colorOptions[i]);
+        // console.log(colorOptions[i].disable);
+        colorOptions[i].disabled = true;
+    }
+
 }
 
 // Toggle other input textbox when 'Other' is selected
@@ -19,6 +27,41 @@ title.addEventListener('change', (e) => {
     }
 })
 
+const shirtDesigns = document.getElementById('design');
+shirtDesigns.addEventListener('change', (e) => {
+    let selectedDesign = shirtDesigns.options[shirtDesigns.selectedIndex].value;
+    const color = document.getElementById('color');
+    const colorElements = color.getElementsByTagName('option');
+    let defaultSelection = color.firstElementChild;
+    if(selectedDesign == 'js puns') {
+        defaultSelection.selected = true;
+        defaultSelection.textContent = 'Select a Color';
+        for(let i = 0; i < colorElements.length; i++) {
+            let element = colorElements[i];
+            if(element.value == 'cornflowerblue' || element.value == 'darkslategrey' || element.value == 'gold') {
+                element.disabled = false;
+            } else {
+                element.disabled = true;
+            }
+        }
+    } else if (selectedDesign == 'heart js') {
+        defaultSelection.selected = true;
+        defaultSelection.textContent = 'Select a Color';
+        for(let i = 0; i < colorElements.length; i++) {
+            let element = colorElements[i];
+            if(element.value == 'tomato' || element.value == 'steelblue' || element.value == 'dimgrey') {
+                element.disabled = false;
+            } else {
+                element.disabled = true;
+            }
+            
+        }
+    }
+    
+    // elseif(selectedDesign == 'heart js') {
+        
+    // } 
+})
 
 // 3 done
 // 4 done
