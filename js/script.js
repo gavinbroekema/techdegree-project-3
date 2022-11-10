@@ -57,11 +57,23 @@ shirtDesigns.addEventListener('change', (e) => {
             
         }
     }
-    
-    // elseif(selectedDesign == 'heart js') {
-        
-    // } 
+})
+
+const activities = document.getElementById('activities');
+activities.addEventListener('change', e => {
+    let sum = 0; 
+    const box = document.getElementById('activities-box'); 
+    const labels = box.getElementsByTagName('label');
+    for(let i = 0; i < labels.length; i++) { 
+        let checked = labels[i].firstElementChild.checked;
+        if(checked) {
+            sum += parseInt(labels[i].firstElementChild.dataset.cost);
+        }
+    }
+    document.getElementById('activities-cost').textContent = 'Total: $' + sum;
 })
 
 // 3 done
 // 4 done
+// 5 done
+// 6 done
