@@ -13,6 +13,14 @@ window.onload = (e) => {
         colorOptions[i].disabled = true;
     }
 
+    const payment = document.getElementById('payment');
+    const credit = payment.querySelector('option[value="credit-card"');
+    credit.selected = 'selected';
+
+    document.getElementById('paypal').style.display = 'none';
+    document.getElementById('bitcoin').style.display = 'none';
+
+
 }
 
 // Toggle other input textbox when 'Other' is selected
@@ -73,7 +81,29 @@ activities.addEventListener('change', e => {
     document.getElementById('activities-cost').textContent = 'Total: $' + sum;
 })
 
+const payment = document.getElementById('payment');
+payment.addEventListener('change', e => {
+    const paymentList = document.getElementById('payment').getElementsByTagName('option');
+    for(let i = 0; i < paymentList.length; i++) {
+        if(paymentList[i].value == 'credit-card' && paymentList[i].selected) {
+            document.getElementById('credit-card').style.display = 'inherit';
+            document.getElementById('paypal').style.display = 'none';
+            document.getElementById('bitcoin').style.display = 'none';
+        } else if (paymentList[i].value == 'paypal' && paymentList[i].selected) {
+            document.getElementById('credit-card').style.display = 'none';
+            document.getElementById('paypal').style.display = 'inherit';
+            document.getElementById('bitcoin').style.display = 'none';
+        } else if (paymentList[i].value == 'bitcoin' && paymentList[i].selected) {
+            document.getElementById('credit-card').style.display = 'none';
+            document.getElementById('paypal').style.display = 'none';
+            document.getElementById('bitcoin').style.display = 'inherit';
+        }
+        
+    }
+})
+
 // 3 done
 // 4 done
 // 5 done
 // 6 done
+// 7 done
