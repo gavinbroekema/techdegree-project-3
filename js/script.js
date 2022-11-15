@@ -100,6 +100,78 @@ payment.addEventListener('change', e => {
         }
         
     }
+}) 
+
+// function nameValidator(name) {
+//     if (name.value !== '') {
+//         return false;
+//     } 
+// }
+
+
+
+function validateName(e) {
+    const name = document.getElementById('name');
+    if (name.value === '' || name.value === null) {
+        e.preventDefault();
+        console.log('Name field improperly filled.')
+    }
+}
+
+function validateEmail(e) {
+    const email = document.getElementById('email');
+    const emailRegex = /^\w+@\w+(.com|.org|.net|.edu)$/;
+    if (!emailRegex.test(email.value) || email.value == '' || email.value == null) {
+        e.preventDefault();
+        console.log('Email field improperly filled.')
+    }
+}
+
+function validateActivitySelected(e) {
+    const activityInputList = document.getElementById('activities-box').getElementsByTagName('input');
+    let activitySelected = false;
+    for(let i = 0; i < activityInputList.length; i++) {
+        if(activityInputList[i].checked === true) {
+            return true;
+        } 
+    }
+    e.preventDefault();
+    console.log('Please select an activity.')
+    return false;
+}
+
+function validateCreditCard(e) {
+    // check if credit card option selected
+    const creditCardOption = document.querySelector('option[value="credit-card"]');
+    const ccNum = document.getElementById('cc-num').value;
+    const zip = document.getElementById('zip').value;
+    const cvv = document.getElementById('cvv').value;
+    const ccRegEx = /^\d{13,16}$/;
+    const zipRegEx = /^\d{6}$/;
+    const cvvRegEx = /^\d{3}$/;
+    
+    if(creditCardOption.selected) {
+        if(!ccRegEx.test(ccNum)) {
+            console.log('Invalid credit card number');
+            e.preventDefault();
+        }
+        if(!zipRegEx.test(zip)) {
+            console.log('Invalid zip code');
+            e.preventDefault();
+        }
+        if(!cvvRegEx.test(cvv)) {
+            console.log('Invalid cvv');
+            e.preventDefault();
+        }
+    }
+}
+
+const form = document.getElementsByTagName('form')[0];
+form.addEventListener('submit', e => {
+    validateName(e);
+    validateEmail(e);
+    validateActivitySelected(e);
+    validateCreditCard(e);
 })
 
 // 3 done
@@ -107,3 +179,4 @@ payment.addEventListener('change', e => {
 // 5 done
 // 6 done
 // 7 done
+// 8 done 
