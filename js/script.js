@@ -9,13 +9,9 @@ window.onload = (e) => {
     const otherRole = document.getElementById('other-job-role');
     otherRole.style.display = 'none';
 
-    const shirtColors = document.getElementById('shirt-colors');
-    const colorOptions = shirtColors.getElementsByTagName('option');
-    for(let i = 0; i < colorOptions.length; i++) {
-        // console.log(colorOptions[i]);
-        // console.log(colorOptions[i].disable);
-        colorOptions[i].disabled = true;
-    }
+    // disable shirt selection box
+    const shirtColors = document.getElementById('color');
+    shirtColors.disabled = true;
 
     const payment = document.getElementById('payment');
     const credit = payment.querySelector('option[value="credit-card"');
@@ -51,25 +47,27 @@ shirtDesigns.addEventListener('change', (e) => {
     const colorElements = color.getElementsByTagName('option');
     let defaultSelection = color.firstElementChild;
     if(selectedDesign == 'js puns') {
+        color.disabled = false;
         defaultSelection.selected = true;
         defaultSelection.textContent = 'Select a Color';
         for(let i = 0; i < colorElements.length; i++) {
             let element = colorElements[i];
             if(element.value == 'cornflowerblue' || element.value == 'darkslategrey' || element.value == 'gold') {
-                element.disabled = false;
+                element.style.display = '';
             } else {
-                element.disabled = true;
+                element.style.display = 'none';
             }
         }
     } else if (selectedDesign == 'heart js') {
+        color.disabled = false;
         defaultSelection.selected = true;
         defaultSelection.textContent = 'Select a Color';
         for(let i = 0; i < colorElements.length; i++) {
             let element = colorElements[i];
             if(element.value == 'tomato' || element.value == 'steelblue' || element.value == 'dimgrey') {
-                element.disabled = false;
+                element.style.display = '';
             } else {
-                element.disabled = true;
+                element.style.display = 'none';
             }
             
         }
@@ -168,7 +166,8 @@ function validateActivitySelected(e) {
     const activityInputList = document.getElementById('activities-box').getElementsByTagName('input');
     for(let i = 0; i < activityInputList.length; i++) {
         if(activityInputList[i].checked === true) {
-            document.getElementById('activities').parentElement.className = 'valid';
+            document.getElementById('activities').className = 'valid';
+            // document.getElementById('activities').parentElement.className = 'valid';
             document.querySelector('#activities-hint').style.display = 'none';
             return true;
         } 
@@ -189,7 +188,7 @@ function validateCreditCard(e) {
     const year = document.getElementById('exp-year');
     const date = document.getElementById('exp-month');
     const ccRegEx = /^\d{13,16}$/;
-    const zipRegEx = /^\d{6}$/;
+    const zipRegEx = /^\d{5}$/;
     const cvvRegEx = /^\d{3}$/;    
     if(creditCardOption.selected) {
         if(year.options[year.selectedIndex].value === 'Select Year') {
