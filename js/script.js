@@ -163,20 +163,27 @@ function validateEmail(e) {
 }
 
 function validateActivitySelected(e) {
+    const activityField = document.getElementById('activities');
+    const activityHint = document.querySelector('#activities-hint');
     const activityInputList = document.getElementById('activities-box').getElementsByTagName('input');
+    let checkedBox = false;
+    // iterate through checkboxes to check if one is checked
     for(let i = 0; i < activityInputList.length; i++) {
         if(activityInputList[i].checked === true) {
-            document.getElementById('activities').className = 'valid';
-            // document.getElementById('activities').parentElement.className = 'valid';
-            document.querySelector('#activities-hint').style.display = 'none';
-            return true;
+            checkedBox = true;
         } 
     }
-    console.log('Please select an activity.')
-    document.getElementById('activities').parentElement.className = 'not-valid';
-    document.querySelector('#activities-hint').style.display = 'block';
-    e.preventDefault();
-    return false;
+    if (checkedBox) {
+        activityField.classList.remove('not-valid')
+        activityField.classList.add('valid');
+        activityHint.style.display = 'none';
+    } else {
+        console.log('Please select an activity.')
+        activityField.classList.remove('valid');
+        activityField.classList.add('not-valid');
+        activityHint.style.display = 'block';
+        e.preventDefault();
+    }
 }
 
 function validateCreditCard(e) {
