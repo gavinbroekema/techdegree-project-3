@@ -153,12 +153,12 @@ function validateEmail(e) {
         console.log('Email field improperly filled.');
         
         email.parentElement.className = 'not-valid';
-        document.querySelector('#name-hint').style.display = 'block';
+        document.querySelector('#email-hint').style.display = 'block';
 
         e.preventDefault();
     } else {
         email.parentElement.className = 'valid';
-        document.querySelector('#name-hint').style.display = 'none';
+        document.querySelector('#email-hint').style.display = 'none';
     }
 }
 
